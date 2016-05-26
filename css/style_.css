@@ -1,0 +1,17 @@
+﻿.sel { width: 250px; margin: 0 auto; margin-bottom: 20px; }
+.img100 { width: 100px; height: 100px; margin-left: 2px; border-radius: 5px; float: left; clear: right; }
+.list_wrap { font-size: 14px; }
+.bigtitle { font-weight: bold; color: steelblue; }
+.list { font-weight: normal; font-size: 14px; width: 100%; border: 1px solid #d9d9d9; clear: left; color: black; line-height: 17px; margin: 15px 0; padding-top: 5px; border-radius: 10px; background-color: white; }
+.title { font-weight: bold; }
+.link { width: 80px; margin-right: 5px; float: left; }
+.price { color: red; }
+.num { width: 40px; height: 43px; line-height: 43px; float: left; }
+.numbox { width: 70px; float: left; }
+.btn { width: 150px; margin: 0 auto; margin-top: 20px; clear: left; }
+.img40 { width: 40px; height: 40px; }
+.wrap { width: 200px; margin: 0 auto; float: left; }
+.basket_btn { width: 60px; margin-left: 7px; float: left; }
+.num_wrap { height: 50px; }
+.img_btn { margin-left: 7px; margin-top: 7px; }
+.sub { font-size: 12px; }

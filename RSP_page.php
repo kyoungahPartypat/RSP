@@ -1,0 +1,93 @@
+<?
+	include "session_check.php";
+
+	$sql = "select * from rsp where phone_number = '$_SESSION[phone_number]' order by `bno` desc";
+					
+	mysql_query("set session character_set_connection=utf8;");
+	mysql_query("set session character_set_results=utf8;");
+	mysql_query("set session character_set_client=utf8;");				
+						
+	$res = mysql_query($sql, $connect) or die (안됨);
+	$total = mysql_num_rows($res);
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="css/background.css" />
+<link rel="stylesheet" href="css/themes/Blues_a.css" />
+<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+<link rel="stylesheet" href="css/jquery_mobile_structure-1.4.2.min.css" /> 
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/mobile_init.js"></script>
+<script src="js/jquery.mobile-1.4.2.min.js"></script>
+<script language='javascript'>
+	function search(obj) {
+		if(obj.value == ""){
+			alert("검색어를 입력해 주세요.");
+		}else{
+			location.replace("RSP_search_page.php?name="+obj.value);
+		}		
+	}	
+</script>
+    <title>상담결과 보관함 1</title>
+	<style>
+		@font-face { font-family: '고딕'; src: url('css/나눔고딕.ttf'); }
+		* { font-family: '고딕'; }
+		a { text-decoration: none; }
+
+		#rsp { width: 195px; text-shadow: none; position: absolute; }
+		
+		.wrap { width: 240px; height: 50px; margin: 0 auto; margin-bottom: 10px; }
+		.text { width: 170px; float: left; }
+		.search { width: 60px; float: right; }
+	</style>
+	<script>
+        $(document).ready(function () {
+            $('#rsp').css({ "left": (document.documentElement.clientWidth / 2) - (rsp.clientWidth / 2) });
+            $('#rsp').css({ "top": (document.documentElement.clientHeight / 2) - (rsp.clientHeight / 2) });
+        });
+    </script>
+</head>
+<body>
+    <div data-role="page" id="background">
+        <div data-role="header" data-position="fixed">
+            <h1>상담결과 보관함 2</h1> 
+        </div>
+		<div data-role="content">
+			<div class="wrap">
+				<div class="text"><input type="text" id= "ch" data-mini="true" data-clear-btn="true" placeholder="고객명" /></div>
+				<div class="search"><input type="button" id = "button" data-mini="true" value="검색" onClick="javascript:search(ch)" /></div>
+			</div>
+			<ul data-role="listview" data-inset="true" style="clear: both;">
+				<?
+					if($total>0) {
+						$temp='';
+
+						while($array = mysql_fetch_array($res)) {						
+							if($temp != $array[saved_date]) {
+								echo "<li><a href = 'RSP_sub_page.php?date=$array[saved_date]'>$array[saved_date]</a></li>";
+
+								$temp = $array[saved_date];
+							}
+						}
+					} else {
+						echo "<div id='rsp'>저장된 상담결과가 없습니다.</div>";
+					}
+				?>
+			</ul>
+		</div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul class="footer_ul">
+                    <li><a href="main.php"><img src="img/icon/홈.png" class="img35" /></a></li>
+                    <li><a href="Basket.php"><img src="img/icon/장바구니.png" class="img35" /></a></li>
+                    <li><a href="RSP_page.php" class="ui-btn-active"><img src="img/icon/상담결과.png" class="img35" /></a></li>
+                </ul>
+				<div class="bar">리크루팅 시뮬레이션 프로그램</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

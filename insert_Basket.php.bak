@@ -1,0 +1,50 @@
+<?
+	session_start();	
+?>
+<?
+	include "connect_db.php";
+	echo "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />";
+	$today = date("Y-m-d");
+	
+	$sql = "select * from basket where product_code = '$code' and phone_number = '$_SESSION[phone_number]'";
+	$res =  mysql_query($sql, $connect);
+	$array = mysql_fetch_array($res);
+	$result = mysql_num_rows($res);
+	echo "$array[product_name]";
+	exit();
+	
+	if($result <= 0) {
+		
+		$res =  mysql_query($sql, $connect);
+		$name = mysql_num_rows($res);
+		
+		
+		if($name <=0 ){
+
+			$sql = "select * from product_list where product_code = '$code'";
+			$res =  mysql_query($sql, $connect);
+			$array = mysql_fetch_array($res);
+
+			$sql = "insert into basket(phone_number, big_class, middle_class, small_class, small_class_two, product_name, product_code, score_value, price_value, price, product_character, product_image, product_count, saved_date)";
+			$sql .= " values('$_SESSION[phone_number]', '$array[big_class]', '$array[middle_class]', '$array[small_class]', '$array[small_class_two]', '$array[product_name]', '$array[product_code]', '$array[score_value]', '$array[price_value]',  '$array[price]', '$array[product_character]', '$array[product_image]', '$num', '$today')";
+			
+			$res =  mysql_query($sql, $connect);		
+		}else{
+
+			$total_num = $num + $array[product_count];
+			$sql = "update basket set product_count = '$total_num' where product_code='$array[product_code]'";
+			$res =  mysql_query($sql, $connect);			
+		}
+	} else {
+		$array = mysql_fetch_array($res);
+		$total_num = $num + $array[product_count];
+		$sql = "update basket set product_count = '$total_num' where product_code='$array[product_code]'";
+		$res =  mysql_query($sql, $connect);
+	}
+
+	
+	echo "<script>
+				alert('장바구니에 담겼습니다.');
+				history.back(-1);
+		  </script>";
+?>

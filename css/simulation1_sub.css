@@ -1,0 +1,10 @@
+/* ÃÊ±âÈ­ */
+@font-face { font-family: '°íµñ'; src: url('³ª´®°íµñ.ttf'); }
+* { font-family: '°íµñ'; }
+a { text-decoration: none; }
+img { width: 100%; height: 100%; }
+h3 { margin: 0; padding: 0; margin-bottom: 20px; }
+
+/* º¸±â */
+.wrap { text-align: center; }
+.big { margin-top: 15px; }

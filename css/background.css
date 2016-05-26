@@ -1,0 +1,14 @@
+/* 초기화 */
+* { text-shadow: none; }
+a { text-decoration: none; }
+
+/* 배경색 */
+#background { background-color: white; }
+
+/* 네비게이션 */
+.header_ul { background-color: white; }
+.header_ul li:nth-child(1), .header_ul li:nth-child(2) { width: 47.5%; margin: 1%; }
+.header_ul li:nth-child(1) a, .header_ul li:nth-child(2) a, .header_ul li:nth-child(3) a { background-color: #d9d9d9; border-radius: 10px; }
+.footer_ul { background-color: #a1c2e8; }
+.bar { font-size: 14px; text-align: center; }
+.img35 { width: 35px; height: 35px; }

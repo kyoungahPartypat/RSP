@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="css/background.css" />
+<link rel="stylesheet" href="css/themes/Blues_a.css" />
+<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+<link rel="stylesheet" href="css/jquery_mobile_structure-1.4.2.min.css" /> 
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/mobile_init.js"></script>
+<script src="js/jquery.mobile-1.4.2.min.js"></script>
+    <title>보상 시뮬레이션 2</title>
+	<style>
+		/* 초기화 */
+		@font-face { font-family: '고딕'; src: url('css/나눔고딕.ttf'); }
+		* { font-family: '고딕'; text-shadow: none; }
+		a { text-decoration: none; }
+
+		/* 입력 화면 */
+		.explanation { text-align: center; margin-bottom: 30px; margin-top: 10px; font-weight: bold; }
+		.wrap { width: 300px; padding-left: 10px; padding-top: 4px; height: 280px; margin: 0 auto; }
+		.text { width: 100px; height: 40px; line-height: 43px; float: left; clear: left; font-weight: bold; }
+		.sub_wrap { width: 270px; height: 70px; border-bottom: 1px dashed #e35a5a; padding-bottom: 5px; margin-bottom: 5px; }
+		.sub_wrap1 { width: 270px; height: 50px; border-top: 1px dashed #e35a5a; clear: both; padding-top: 5px; }
+		.stroke { border-top: 1px dashed skyblue; }
+		.sel { width: 150px; margin-left: 20px; float: left; }
+		.dan_wrap { clear: left; font-weight: bold; padding-top: 10px; margin-bottom: 5px; }
+		.down { width: 80px; height: 40px; line-height: 43px; margin-left: 20px; float: left; clear: left; }
+		.caculate { clear: both; width: 150px; padding-top: 50px; margin: 0 auto; }
+	</style>
+</head>
+<body>
+    <div data-role="page" id="background">
+        <div data-role="header" data-position="fixed">
+            <h1>보상 시뮬레이션 2</h1>
+        </div>
+		<div data-role="content">
+			<form name = "simulation_page" method = "post" action = "Simulation2_sub_page.php">				
+				<div class="explanation">
+					보상을 다양한 상황과 조건을 가정하여<br />일목요연하게 시뮬레이션하는 공간
+				</div>
+				<div class="wrap">
+					<div class="sub_wrap">
+						<div class="text">본인 점수치</div>
+						<div class="sel">
+							<select data-mini="true" name = "me[]">
+								<?
+									for($a = 1; $a < 11; $a++) {
+										$score = $a * 100000;
+										echo "<option value='$score'>{$a}0만</option>";
+									}
+								?>
+							</select>
+						</div>
+						<div style="font-size: 12px;">(하위라인 점수치도 동일로 가정)</div>
+					</div>
+					<div class="dan_wrap">하위 단계별 레그수</div>
+					<div class="down">단계 1</div>
+					<div class="sel">
+						<select data-mini="true" name = "dan_one[]">
+							<?
+								for($dan1 = 1; $dan1 < 21; $dan1++) {
+									echo "<option value='$dan1'>$dan1</option>";
+								}
+							?>
+						</select>
+					</div>
+					<div class="down">단계 2</div>
+					<div class="sel">
+						<select data-mini="true" name = "dan_two[]"> 
+							<?
+								for($dan2 = 1; $dan2 < 21; $dan2++) {
+									echo "<option value='$dan2'>$dan2</option>";
+								}
+							?>
+						</select>
+					</div>
+					<div class="down" style="margin-bottom: 5px;">단계 3</div>
+					<div class="sel" style="margin-bottom: 5px;">
+						<select data-mini="true" name = "dan_three[]">
+							<?
+								for($dan3 = 1; $dan3 < 21; $dan3++) {
+									echo "<option value='$dan3'>$dan3</option>";
+								}
+							?>
+						</select>
+					</div>
+					<div class="sub_wrap1">
+						<div class="text">사용월수</div>
+						<div class="sel">
+							<select data-mini="true" name = "use_month[]">
+								<?
+									for($month = 1; $month < 13; $month++) {
+										echo "<option value='$month'>$month</option>";
+									}
+								?>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="caculate"><input type="submit" value="결과보기" data-mini="true" style="background-color: black;" /></div>
+			</form>
+		</div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul class="footer_ul">
+                    <li><a href="main.php"><img src="img/icon/홈.png" class="img35" /></a></li>
+                    <li><a href="Basket.php"><img src="img/icon/장바구니.png" class="img35" /></a></li>
+                    <li><a href="RSP_page.php"><img src="img/icon/상담결과.png" class="img35" /></a></li>
+                </ul>
+				<div class="bar">리크루팅 시뮬레이션 프로그램</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
